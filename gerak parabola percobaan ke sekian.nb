@@ -1,0 +1,877 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     39471,        869]
+NotebookOptionsPosition[     39124,        852]
+NotebookOutlinePosition[     39492,        868]
+CellTagsIndexPosition[     39449,        865]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Switch", "[", 
+    RowBox[{
+    "motion", ",", "\[IndentingNewLine]", "0", ",", "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"sol3", ",", "sol2", ",", "sol1", ",", "tmax"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"sol1", "=", 
+         RowBox[{"NDSolveValue", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"z", "''"}], "[", "k", "]"}], "==", 
+              RowBox[{"-", 
+               RowBox[{"(", "9.81", ")"}]}]}], ",", 
+             RowBox[{
+              RowBox[{"z", "[", "0", "]"}], "==", "z0"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"z", "'"}], "[", "0", "]"}], "\[Equal]", 
+              RowBox[{"v0", " ", 
+               RowBox[{"Cos", "[", "j", "]"}]}]}]}], "}"}], ",", "z", ",", 
+           RowBox[{"{", 
+            RowBox[{"k", ",", "0", ",", "1000"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"sol2", "=", 
+         RowBox[{"NDSolveValue", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"y", "''"}], "[", "k", "]"}], "\[Equal]", "0"}], ",", 
+             RowBox[{
+              RowBox[{"y", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"y", "'"}], "[", "0", "]"}], "\[Equal]", 
+              RowBox[{"v0", " ", 
+               RowBox[{"Sin", "[", "j", "]"}], 
+               RowBox[{"Sin", "[", "b", "]"}]}]}]}], "}"}], ",", "y", ",", 
+           RowBox[{"{", 
+            RowBox[{"k", ",", "0", ",", "1000"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"sol3", "=", 
+         RowBox[{"NDSolveValue", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"x", "''"}], "[", "k", "]"}], "\[Equal]", "0"}], ",", 
+             RowBox[{
+              RowBox[{"x", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"x", "'"}], "[", "0", "]"}], "\[Equal]", 
+              RowBox[{"v0", " ", 
+               RowBox[{"Sin", "[", "j", "]"}], 
+               RowBox[{"Cos", "[", "b", "]"}]}]}]}], "}"}], ",", "x", ",", 
+           RowBox[{"{", 
+            RowBox[{"k", ",", "0", ",", "1000"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"tmax", "=", 
+         RowBox[{
+          RowBox[{"InverseFunction", "[", "sol1", "]"}], "[", "0", "]"}]}], 
+        ";", "\[IndentingNewLine]", 
+        RowBox[{"Show", "[", 
+         RowBox[{
+          RowBox[{"ParametricPlot3D", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"sol3", "[", "p", "]"}], ",", 
+              RowBox[{"sol2", "[", "p", "]"}], ",", 
+              RowBox[{"sol1", "[", "p", "]"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"p", ",", "0.00001", ",", "t"}], "}"}]}], "]"}], ",", 
+          RowBox[{"Graphics3D", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              RowBox[{
+               RowBox[{"Sphere", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"sol3", "[", "t", "]"}], ",", 
+                   RowBox[{"sol2", "[", "t", "]"}], ",", 
+                   RowBox[{"sol1", "[", "t", "]"}]}], "}"}], ",", 
+                 RowBox[{"1", "/", "8"}]}], "]"}], ",", "Red"}], "]"}], ",", 
+             RowBox[{"Text", "[", 
+              RowBox[{
+               RowBox[{"Row", "[", 
+                RowBox[{"{", 
+                 RowBox[{
+                 "\"\<waktu yang dibutuhkan sampai tanah \>\"", ",", "tmax", 
+                  ",", "\"\< s\>\""}], "}"}], "]"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", "1", ",", 
+                 RowBox[{"-", "2"}]}], "}"}]}], "]"}], ",", 
+             RowBox[{"Text", "[", 
+              RowBox[{"\"\<digunakan percepatan gravitasi 9,81m/s^2\>\"", ",", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", "1", ",", 
+                 RowBox[{"-", "3"}]}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+          RowBox[{"PlotRange", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", "4"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", "4"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", "7"}], "}"}]}], "}"}]}], ",", 
+          RowBox[{"PlotLabel", "\[Rule]", 
+           RowBox[{"Style", "[", 
+            RowBox[{"\"\<Gerak Parabola\>\"", ",", "Bold", ",", "24"}], 
+            "]"}]}]}], "]"}]}]}], "]"}], ",", "\[IndentingNewLine]", "1", ",",
+      "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"sol3", ",", "sol2", ",", "sol1", ",", "tmax"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"sol1", "=", 
+         RowBox[{"NDSolveValue", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"m", " ", 
+               RowBox[{
+                RowBox[{"z", "''"}], "[", "k", "]"}]}], "==", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"-", "m"}], 
+                RowBox[{"(", "9.81", ")"}]}], "-", 
+               RowBox[{"c", " ", 
+                RowBox[{
+                 RowBox[{"z", "'"}], "[", "k", "]"}]}]}]}], ",", 
+             RowBox[{
+              RowBox[{"z", "[", "0", "]"}], "==", "z0"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"z", "'"}], "[", "0", "]"}], "\[Equal]", 
+              RowBox[{"v0", " ", 
+               RowBox[{"Cos", "[", "j", "]"}]}]}]}], "}"}], ",", "z", ",", 
+           RowBox[{"{", 
+            RowBox[{"k", ",", "0", ",", "1000"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"sol2", "=", 
+         RowBox[{"NDSolveValue", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"m", " ", 
+               RowBox[{
+                RowBox[{"y", "''"}], "[", "k", "]"}]}], "\[Equal]", 
+              RowBox[{
+               RowBox[{"-", "c"}], " ", 
+               RowBox[{
+                RowBox[{"y", "'"}], "[", "k", "]"}]}]}], ",", 
+             RowBox[{
+              RowBox[{"y", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"y", "'"}], "[", "0", "]"}], "\[Equal]", 
+              RowBox[{"v0", " ", 
+               RowBox[{"Sin", "[", "j", "]"}], 
+               RowBox[{"Sin", "[", "b", "]"}]}]}]}], "}"}], ",", "y", ",", 
+           RowBox[{"{", 
+            RowBox[{"k", ",", "0", ",", "1000"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"sol3", "=", 
+         RowBox[{"NDSolveValue", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"m", " ", 
+               RowBox[{
+                RowBox[{"x", "''"}], "[", "k", "]"}]}], "\[Equal]", 
+              RowBox[{
+               RowBox[{"-", "c"}], " ", 
+               RowBox[{
+                RowBox[{"x", "'"}], "[", "k", "]"}]}]}], ",", 
+             RowBox[{
+              RowBox[{"x", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"x", "'"}], "[", "0", "]"}], "\[Equal]", 
+              RowBox[{"v0", " ", 
+               RowBox[{"Sin", "[", "j", "]"}], 
+               RowBox[{"Cos", "[", "b", "]"}]}]}]}], "}"}], ",", "x", ",", 
+           RowBox[{"{", 
+            RowBox[{"k", ",", "0", ",", "1000"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"tmax", "=", 
+         RowBox[{
+          RowBox[{"InverseFunction", " ", "[", "sol1", "]"}], "[", "0", 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Show", "[", 
+         RowBox[{
+          RowBox[{"ParametricPlot3D", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"sol3", "[", "p", "]"}], ",", 
+              RowBox[{"sol2", "[", "p", "]"}], ",", 
+              RowBox[{"sol1", "[", "p", "]"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"p", ",", "0.00001", ",", "t"}], "}"}]}], "]"}], ",", 
+          RowBox[{"Graphics3D", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              RowBox[{
+               RowBox[{"Sphere", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"sol3", "[", "t", "]"}], ",", 
+                   RowBox[{"sol2", "[", "t", "]"}], ",", 
+                   RowBox[{"sol1", "[", "t", "]"}]}], "}"}], ",", 
+                 RowBox[{"1", "/", "8"}]}], "]"}], ",", "Red"}], "]"}], ",", 
+             RowBox[{"Text", "[", 
+              RowBox[{
+               RowBox[{"Row", "[", 
+                RowBox[{"{", 
+                 RowBox[{
+                 "\"\<waktu yang dibutuhkan sampai tanah \>\"", ",", "tmax", 
+                  ",", " ", "\"\< s\>\""}], "}"}], "]"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", "1", ",", 
+                 RowBox[{"-", "2"}]}], "}"}]}], "]"}], ",", 
+             RowBox[{"Text", "[", 
+              RowBox[{"\"\<digunakan percepatan gravitasi 9,81m/s^2\>\"", ",", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", "1", ",", 
+                 RowBox[{"-", "3"}]}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+          RowBox[{"PlotRange", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", "4"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", "4"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", "7"}], "}"}]}], "}"}]}], ",", 
+          RowBox[{"PlotLabel", "\[Rule]", 
+           RowBox[{"Style", "[", 
+            RowBox[{"\"\<Gerak Parabola\>\"", ",", "Bold", ",", "24"}], 
+            "]"}]}]}], "]"}]}]}], "]"}], ",", "\[IndentingNewLine]", "2", ",",
+      "\[IndentingNewLine]", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"sol3", ",", "sol2", ",", "sol1", ",", "tmax"}], "}"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"sol1", "=", 
+         RowBox[{"NDSolveValue", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"m", " ", 
+               RowBox[{
+                RowBox[{"z", "''"}], "[", "k", "]"}]}], "==", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"-", "m"}], 
+                RowBox[{"(", "9.81", ")"}]}], "-", 
+               RowBox[{"c", " ", 
+                RowBox[{
+                 RowBox[{"z", "'"}], "[", "k", "]"}], 
+                RowBox[{"Abs", "[", 
+                 RowBox[{
+                  RowBox[{"z", "'"}], "[", "k", "]"}], "]"}]}]}]}], ",", 
+             RowBox[{
+              RowBox[{"z", "[", "0", "]"}], "==", "z0"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"z", "'"}], "[", "0", "]"}], "\[Equal]", 
+              RowBox[{"v0", " ", 
+               RowBox[{"Cos", "[", "j", "]"}]}]}]}], "}"}], ",", "z", ",", 
+           RowBox[{"{", 
+            RowBox[{"k", ",", "0", ",", "1000"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"sol2", "=", 
+         RowBox[{"NDSolveValue", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"m", " ", 
+               RowBox[{
+                RowBox[{"y", "''"}], "[", "k", "]"}]}], "\[Equal]", 
+              RowBox[{
+               RowBox[{"-", "c"}], " ", 
+               RowBox[{
+                RowBox[{"y", "'"}], "[", "k", "]"}], 
+               RowBox[{"Abs", "[", 
+                RowBox[{
+                 RowBox[{"y", "'"}], "[", "k", "]"}], "]"}]}]}], ",", 
+             RowBox[{
+              RowBox[{"y", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"y", "'"}], "[", "0", "]"}], "\[Equal]", 
+              RowBox[{"v0", " ", 
+               RowBox[{"Sin", "[", "j", "]"}], 
+               RowBox[{"Sin", "[", "b", "]"}]}]}]}], "}"}], ",", "y", ",", 
+           RowBox[{"{", 
+            RowBox[{"k", ",", "0", ",", "1000"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"sol3", "=", 
+         RowBox[{"NDSolveValue", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"m", " ", 
+               RowBox[{
+                RowBox[{"x", "''"}], "[", "k", "]"}]}], "\[Equal]", 
+              RowBox[{
+               RowBox[{"-", "c"}], " ", 
+               RowBox[{
+                RowBox[{"x", "'"}], "[", "k", "]"}], 
+               RowBox[{"Abs", "[", 
+                RowBox[{
+                 RowBox[{"x", "'"}], "[", "k", "]"}], "]"}]}]}], ",", 
+             RowBox[{
+              RowBox[{"x", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"x", "'"}], "[", "0", "]"}], "\[Equal]", 
+              RowBox[{"v0", " ", 
+               RowBox[{"Sin", "[", "j", "]"}], 
+               RowBox[{"Cos", "[", "b", "]"}]}]}]}], "}"}], ",", "x", ",", 
+           RowBox[{"{", 
+            RowBox[{"k", ",", "0", ",", "1000"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"tmax", "=", 
+         RowBox[{
+          RowBox[{"InverseFunction", " ", "[", "sol1", "]"}], "[", "0", 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Show", "[", 
+         RowBox[{
+          RowBox[{"ParametricPlot3D", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"sol3", "[", "p", "]"}], ",", 
+              RowBox[{"sol2", "[", "p", "]"}], ",", 
+              RowBox[{"sol1", "[", "p", "]"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"p", ",", "0.00001", ",", "t"}], "}"}]}], "]"}], ",", 
+          RowBox[{"Graphics3D", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              RowBox[{
+               RowBox[{"Sphere", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"sol3", "[", "t", "]"}], ",", 
+                   RowBox[{"sol2", "[", "t", "]"}], ",", 
+                   RowBox[{"sol1", "[", "t", "]"}]}], "}"}], ",", 
+                 RowBox[{"1", "/", "8"}]}], "]"}], ",", "Red"}], "]"}], ",", 
+             RowBox[{"Text", "[", 
+              RowBox[{
+               RowBox[{"Row", "[", 
+                RowBox[{"{", 
+                 RowBox[{
+                 "\"\<waktu yang dibutuhkan sampai tanah \>\"", ",", "tmax", 
+                  ",", "\"\< s\>\""}], "}"}], "]"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", "1", ",", 
+                 RowBox[{"-", "2"}]}], "}"}]}], "]"}], ",", 
+             RowBox[{"Text", "[", 
+              RowBox[{"\"\<digunakan percepatan gravitasi 9,81m/s^2\>\"", ",", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", "1", ",", 
+                 RowBox[{"-", "3"}]}], "}"}]}], "]"}]}], "}"}], "]"}], ",", 
+          RowBox[{"PlotRange", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", "4"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", "4"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", "7"}], "}"}]}], "}"}]}], ",", 
+          RowBox[{"PlotLabel", "\[Rule]", 
+           RowBox[{"Style", "[", 
+            RowBox[{"\"\<Gerak Parabola\>\"", ",", "Bold", ",", "24"}], 
+            "]"}]}]}], "]"}]}]}], "]"}]}], "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Style", "[", 
+    RowBox[{
+    "\"\<Simulasi Gerak Parabola by Jessie\>\"", ",", "20", ",", "Bold"}], 
+    "]"}], ",", "\[IndentingNewLine]", "Delimiter", ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Style", "[", 
+    RowBox[{"\"\<pengaruh gerak\>\"", ",", "Bold"}], "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"motion", ",", "0", ",", "\"\<faktor gesekan udara\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"0", "\[Rule]", "\"\<tanpa gesekan\>\""}], ",", 
+       RowBox[{"1", "\[Rule]", "\"\<cv\>\""}], ",", 
+       RowBox[{"2", "\[Rule]", " ", "\"\<cv^2\>\""}]}], "}"}], ",", 
+     RowBox[{"ControlType", "\[Rule]", "Setter"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"m", ",", "1", ",", "\"\<massa benda (kg)\>\""}], "}"}], ",", 
+     "1", ",", "5", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"c", ",", "1", ",", "\"\<faktor gesekan udara (N.s/m)\>\""}], 
+      "}"}], ",", "1", ",", "5", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", "Delimiter", ",", "\[IndentingNewLine]", 
+   RowBox[{"Style", "[", 
+    RowBox[{"\"\<kondisi awal\>\"", ",", "Bold"}], "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"z0", ",", "5", ",", "\"\<Ketinggian awal (m)\>\""}], "}"}], 
+     ",", "0", ",", "5", ",", 
+     RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"v0", ",", "5", ",", "\"\<Kecepatan awal (m/s)\>\""}], "}"}], 
+     ",", "5", ",", "10", ",", 
+     RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"j", ",", 
+       RowBox[{"Pi", "/", "12"}], ",", 
+       "\"\<Sudut lemparan terhadap sumbu z (rad)\>\""}], "}"}], ",", 
+     RowBox[{"Pi", "/", "12"}], ",", 
+     RowBox[{"Pi", "/", "2"}], ",", 
+     RowBox[{"Pi", "/", "12"}], ",", 
+     RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"b", ",", 
+       RowBox[{"Pi", "/", "12"}], ",", 
+       "\"\<Sudut lemparan terhadap sumbu x (rad)\>\""}], "}"}], ",", 
+     RowBox[{"Pi", "/", "12"}], ",", 
+     RowBox[{"Pi", "/", "2"}], ",", 
+     RowBox[{"Pi", "/", "12"}], ",", 
+     RowBox[{"Appearance", "\[Rule]", " ", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", "Delimiter", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "\"\<Waktu(s)\>\""}], "}"}], ",", "0", ",", 
+     "5", ",", 
+     RowBox[{"ControlType", "\[Rule]", " ", "Trigger"}], ",", 
+     RowBox[{"AnimationRate", "\[Rule]", " ", "1"}], ",", 
+     RowBox[{"Appearance", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Open\>\"", ",", "\"\<Labeled\>\""}], "}"}]}]}], "}"}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"Style", "[", 
+    RowBox[{"\"\<100% bikin sendiri\>\"", ",", "Bold"}], "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"TrackedSymbols", "\[RuleDelayed]", "  ", 
+    RowBox[{"{", 
+     RowBox[{"motion", ",", "z0", ",", "v0", ",", "j", ",", "b", ",", "t"}], 
+     "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.754971397493539*^9, 3.7549714317464976`*^9}, {
+   3.7549715746956673`*^9, 3.754971653404169*^9}, {3.7549716965566373`*^9, 
+   3.754971738102013*^9}, {3.7549717683657446`*^9, 3.7549717909990387`*^9}, {
+   3.7549718408818903`*^9, 3.7549718412219095`*^9}, {3.7549721009927673`*^9, 
+   3.7549721583340473`*^9}, {3.7549722206446114`*^9, 
+   3.7549722519244003`*^9}, {3.7549722825581527`*^9, 
+   3.7549723932004805`*^9}, {3.7549724336827965`*^9, 3.754972469485844*^9}, {
+   3.7549725099111567`*^9, 3.7549725230019054`*^9}, {3.7549727144858575`*^9, 
+   3.7549727255864925`*^9}, {3.7549727647797337`*^9, 
+   3.7549727707900777`*^9}, {3.7549882684811025`*^9, 
+   3.7549882966257124`*^9}, {3.7549883345398808`*^9, 3.754988482271331*^9}, {
+   3.754988513848137*^9, 3.754988606428432*^9}, {3.754988717815803*^9, 
+   3.754988823505848*^9}, {3.7549888755398245`*^9, 3.754988954018313*^9}, {
+   3.7549890210611477`*^9, 3.754989022951256*^9}, {3.7549890603413944`*^9, 
+   3.75498906096443*^9}, {3.75498911656361*^9, 3.7549891177426777`*^9}, {
+   3.754989158788025*^9, 3.7549891724478064`*^9}, {3.7549892086058745`*^9, 
+   3.7549892997840896`*^9}, {3.754989330957873*^9, 3.754989353065137*^9}, {
+   3.754989479044343*^9, 3.7549894943172164`*^9}, {3.754989551217471*^9, 
+   3.7549895809161696`*^9}, {3.754989613531035*^9, 3.7549897417183666`*^9}, {
+   3.754989782671709*^9, 3.754989793907352*^9}, {3.75498984160108*^9, 
+   3.754989843038162*^9}, {3.7703455849288197`*^9, 3.7703456533027587`*^9}, {
+   3.770345712172207*^9, 3.7703457935943675`*^9}, {3.7703458295731597`*^9, 
+   3.7703458779108543`*^9}, {3.770345945068287*^9, 3.7703459473281617`*^9}, {
+   3.7703461642268963`*^9, 3.770346167938965*^9}, {3.770346253652815*^9, 
+   3.7703462871051846`*^9}, {3.7703464294516296`*^9, 3.770346448087544*^9}, {
+   3.770346483148758*^9, 3.7703465429510546`*^9}, {3.7704438005774603`*^9, 
+   3.7704438351031013`*^9}, {3.7704438657970266`*^9, 3.770444044764102*^9}, {
+   3.7704440872734213`*^9, 3.770444181897969*^9}, {3.770444255476717*^9, 
+   3.7704442694483786`*^9}, {3.7704443803915606`*^9, 
+   3.7704444127280593`*^9}, {3.7704444700437336`*^9, 3.770444496234702*^9}, {
+   3.7704445690080166`*^9, 3.7704446429851255`*^9}, {3.7704447454001617`*^9, 
+   3.7704447780846963`*^9}, {3.770585697790223*^9, 3.7705858457626867`*^9}, {
+   3.770585897084622*^9, 3.770585928207402*^9}, {3.770586016952478*^9, 
+   3.7705860421479187`*^9}, {3.7705861082156982`*^9, 3.770586110076804*^9}, {
+   3.770586144119752*^9, 3.7705862806365595`*^9}, {3.770586344056187*^9, 
+   3.770586344420208*^9}, {3.770617252942114*^9, 3.7706173832785687`*^9}, {
+   3.770617417257512*^9, 3.770617424945952*^9}, {3.7706176612984705`*^9, 
+   3.7706180378800097`*^9}, {3.770618079163371*^9, 3.770618145564169*^9}, {
+   3.770618198822215*^9, 3.770618353205045*^9}, {3.770618402384858*^9, 
+   3.77061846902567*^9}, {3.770618511105077*^9, 3.7706185561756544`*^9}, {
+   3.770618590628625*^9, 3.770618696420676*^9}, {3.77061881101023*^9, 
+   3.7706188160255175`*^9}, 3.7706188687305317`*^9, {3.770619560817631*^9, 
+   3.770619567774029*^9}, {3.770619598356778*^9, 3.770619712291295*^9}, {
+   3.7706200254332056`*^9, 3.770620049148562*^9}, {3.7706202445727396`*^9, 
+   3.7706202516861467`*^9}, {3.770620296468708*^9, 3.770620359381306*^9}, 
+   3.7706204079630847`*^9, 3.770620447780362*^9, {3.770620628742713*^9, 
+   3.7706206842998905`*^9}, {3.77062118728866*^9, 3.770621210566991*^9}, {
+   3.7706216145931005`*^9, 3.770621655577444*^9}, {3.770621758973358*^9, 
+   3.770622002406282*^9}, {3.7706220870391226`*^9, 3.7706221197809954`*^9}, 
+   3.7706222763069477`*^9, {3.770622306547678*^9, 3.770622344282836*^9}, {
+   3.770622472057144*^9, 3.7706225007847877`*^9}, {3.770622542386167*^9, 
+   3.7706225820684366`*^9}, {3.7706226741227016`*^9, 
+   3.7706226942418528`*^9}, {3.7706227327000523`*^9, 
+   3.7706228507188025`*^9}, {3.770622920580798*^9, 3.7706229227809243`*^9}, {
+   3.7706229627282095`*^9, 3.770622963221237*^9}, {3.770623016920309*^9, 
+   3.7706230306040916`*^9}, {3.7706231174620595`*^9, 
+   3.7706231866830187`*^9}, {3.7706234416085997`*^9, 
+   3.7706235192010374`*^9}, {3.7706236035678635`*^9, 3.770623622127925*^9}, {
+   3.7706236756619864`*^9, 3.770623717819398*^9}, {3.770623777631819*^9, 
+   3.7706238402504005`*^9}, {3.7706239064401865`*^9, 
+   3.7706240605920033`*^9}, {3.7706241888323383`*^9, 
+   3.7706243722578297`*^9}, {3.770625422454598*^9, 3.7706255024671373`*^9}, {
+   3.770625539423602*^9, 3.7706255642588453`*^9}, {3.770625645784587*^9, 
+   3.770625684004654*^9}, {3.7706257273727293`*^9, 3.770625767246399*^9}, {
+   3.770625823546897*^9, 3.7706259945543957`*^9}, {3.770626027595253*^9, 
+   3.770626028063254*^9}, {3.7706260967345734`*^9, 3.77062611756061*^9}, {
+   3.77062683017318*^9, 3.770626886136381*^9}, {3.7706269942795663`*^9, 
+   3.7706270746831656`*^9}, {3.7706271375417604`*^9, 
+   3.7706274368908825`*^9}, {3.770627701444014*^9, 3.7706277353889556`*^9}, {
+   3.7706279019354815`*^9, 3.7706280008231373`*^9}, {3.7706283112548933`*^9, 
+   3.7706283162791805`*^9}, {3.770628357623545*^9, 3.7706283979718533`*^9}, {
+   3.770628439236213*^9, 3.7706284879640007`*^9}, {3.7706285326375556`*^9, 
+   3.770628533484604*^9}, {3.7706286816850805`*^9, 3.7706287348051186`*^9}, {
+   3.770629493274501*^9, 3.770629494898594*^9}, 3.7706295536079516`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`b$$ = Rational[1, 12] Pi, $CellContext`c$$ =
+     1, $CellContext`j$$ = Rational[1, 12] Pi, $CellContext`m$$ = 
+    1, $CellContext`motion$$ = 0, $CellContext`t$$ = 0, $CellContext`v0$$ = 
+    5, $CellContext`z0$$ = 5, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[
+       Style["Simulasi Gerak Parabola by Jessie", 20, Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Style["pengaruh gerak", Bold]], Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`motion$$], 0, "faktor gesekan udara"}, {
+      0 -> "tanpa gesekan", 1 -> "cv", 2 -> "cv^2"}}, {{
+       Hold[$CellContext`m$$], 1, "massa benda (kg)"}, 1, 5}, {{
+       Hold[$CellContext`c$$], 1, "faktor gesekan udara (N.s/m)"}, 1, 5}, {
+      Hold[
+       Style["kondisi awal", Bold]], Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`z0$$], 5, "Ketinggian awal (m)"}, 0, 5}, {{
+       Hold[$CellContext`v0$$], 5, "Kecepatan awal (m/s)"}, 5, 10}, {{
+       Hold[$CellContext`j$$], Rational[1, 12] Pi, 
+       "Sudut lemparan terhadap sumbu z (rad)"}, Rational[1, 12] Pi, 
+      Rational[1, 2] Pi, Rational[1, 12] Pi}, {{
+       Hold[$CellContext`b$$], Rational[1, 12] Pi, 
+       "Sudut lemparan terhadap sumbu x (rad)"}, Rational[1, 12] Pi, 
+      Rational[1, 2] Pi, Rational[1, 12] Pi}, {{
+       Hold[$CellContext`t$$], 0, "Waktu(s)"}, 0, 5}, {
+      Hold[
+       Style["100% bikin sendiri", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
+    399., {267., 273.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`motion$112356$$ = 
+    False, $CellContext`m$112357$$ = 0, $CellContext`c$112358$$ = 
+    0, $CellContext`z0$112359$$ = 0, $CellContext`v0$112360$$ = 
+    0, $CellContext`j$112361$$ = 0, $CellContext`b$112362$$ = 
+    0, $CellContext`t$112363$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`b$$ = Rational[1, 12] Pi, $CellContext`c$$ = 
+        1, $CellContext`j$$ = Rational[1, 12] Pi, $CellContext`m$$ = 
+        1, $CellContext`motion$$ = 0, $CellContext`t$$ = 0, $CellContext`v0$$ = 
+        5, $CellContext`z0$$ = 5}, "ControllerVariables" :> {
+        Hold[$CellContext`motion$$, $CellContext`motion$112356$$, False], 
+        Hold[$CellContext`m$$, $CellContext`m$112357$$, 0], 
+        Hold[$CellContext`c$$, $CellContext`c$112358$$, 0], 
+        Hold[$CellContext`z0$$, $CellContext`z0$112359$$, 0], 
+        Hold[$CellContext`v0$$, $CellContext`v0$112360$$, 0], 
+        Hold[$CellContext`j$$, $CellContext`j$112361$$, 0], 
+        Hold[$CellContext`b$$, $CellContext`b$112362$$, 0], 
+        Hold[$CellContext`t$$, $CellContext`t$112363$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Switch[$CellContext`motion$$, 0, 
+        Module[{$CellContext`sol3$, $CellContext`sol2$, $CellContext`sol1$, \
+$CellContext`tmax$}, $CellContext`sol1$ = 
+          NDSolveValue[{
+            Derivative[
+              2][$CellContext`z][$CellContext`k] == -9.81, $CellContext`z[
+              0] == $CellContext`z0$$, 
+             Derivative[1][$CellContext`z][0] == $CellContext`v0$$ 
+              Cos[$CellContext`j$$]}, $CellContext`z, {$CellContext`k, 0, 
+             1000}]; $CellContext`sol2$ = 
+          NDSolveValue[{
+            Derivative[2][$CellContext`y][$CellContext`k] == 
+             0, $CellContext`y[0] == 0, 
+             Derivative[1][$CellContext`y][0] == $CellContext`v0$$ 
+              Sin[$CellContext`j$$] 
+              Sin[$CellContext`b$$]}, $CellContext`y, {$CellContext`k, 0, 
+             1000}]; $CellContext`sol3$ = 
+          NDSolveValue[{
+            Derivative[2][$CellContext`x][$CellContext`k] == 
+             0, $CellContext`x[0] == 0, 
+             Derivative[1][$CellContext`x][0] == $CellContext`v0$$ 
+              Sin[$CellContext`j$$] 
+              Cos[$CellContext`b$$]}, $CellContext`x, {$CellContext`k, 0, 
+             1000}]; $CellContext`tmax$ = 
+          InverseFunction[$CellContext`sol1$][0]; Show[
+           ParametricPlot3D[{
+             $CellContext`sol3$[$CellContext`p], 
+             $CellContext`sol2$[$CellContext`p], 
+             $CellContext`sol1$[$CellContext`p]}, {$CellContext`p, 
+             0.00001, $CellContext`t$$}], 
+           Graphics3D[{
+             Style[
+              Sphere[{
+                $CellContext`sol3$[$CellContext`t$$], 
+                $CellContext`sol2$[$CellContext`t$$], 
+                $CellContext`sol1$[$CellContext`t$$]}, 1/8], Red], 
+             Text[
+              
+              Row[{"waktu yang dibutuhkan sampai tanah ", $CellContext`tmax$, 
+                " s"}], {0, 1, -2}], 
+             Text["digunakan percepatan gravitasi 9,81m/s^2", {0, 1, -3}]}], 
+           PlotRange -> {{0, 4}, {0, 4}, {0, 7}}, PlotLabel -> 
+           Style["Gerak Parabola", Bold, 24]]], 1, 
+        Module[{$CellContext`sol3$, $CellContext`sol2$, $CellContext`sol1$, \
+$CellContext`tmax$}, $CellContext`sol1$ = 
+          NDSolveValue[{$CellContext`m$$ 
+              Derivative[
+               2][$CellContext`z][$CellContext`k] == (-$CellContext`m$$) 
+               9.81 - $CellContext`c$$ 
+              Derivative[1][$CellContext`z][$CellContext`k], $CellContext`z[
+              0] == $CellContext`z0$$, 
+             Derivative[1][$CellContext`z][0] == $CellContext`v0$$ 
+              Cos[$CellContext`j$$]}, $CellContext`z, {$CellContext`k, 0, 
+             1000}]; $CellContext`sol2$ = 
+          NDSolveValue[{$CellContext`m$$ 
+              Derivative[
+               2][$CellContext`y][$CellContext`k] == (-$CellContext`c$$) 
+              Derivative[1][$CellContext`y][$CellContext`k], $CellContext`y[
+              0] == 0, 
+             Derivative[1][$CellContext`y][0] == $CellContext`v0$$ 
+              Sin[$CellContext`j$$] 
+              Sin[$CellContext`b$$]}, $CellContext`y, {$CellContext`k, 0, 
+             1000}]; $CellContext`sol3$ = 
+          NDSolveValue[{$CellContext`m$$ 
+              Derivative[
+               2][$CellContext`x][$CellContext`k] == (-$CellContext`c$$) 
+              Derivative[1][$CellContext`x][$CellContext`k], $CellContext`x[
+              0] == 0, 
+             Derivative[1][$CellContext`x][0] == $CellContext`v0$$ 
+              Sin[$CellContext`j$$] 
+              Cos[$CellContext`b$$]}, $CellContext`x, {$CellContext`k, 0, 
+             1000}]; $CellContext`tmax$ = 
+          InverseFunction[$CellContext`sol1$][0]; Show[
+           ParametricPlot3D[{
+             $CellContext`sol3$[$CellContext`p], 
+             $CellContext`sol2$[$CellContext`p], 
+             $CellContext`sol1$[$CellContext`p]}, {$CellContext`p, 
+             0.00001, $CellContext`t$$}], 
+           Graphics3D[{
+             Style[
+              Sphere[{
+                $CellContext`sol3$[$CellContext`t$$], 
+                $CellContext`sol2$[$CellContext`t$$], 
+                $CellContext`sol1$[$CellContext`t$$]}, 1/8], Red], 
+             Text[
+              
+              Row[{"waktu yang dibutuhkan sampai tanah ", $CellContext`tmax$, 
+                " s"}], {0, 1, -2}], 
+             Text["digunakan percepatan gravitasi 9,81m/s^2", {0, 1, -3}]}], 
+           PlotRange -> {{0, 4}, {0, 4}, {0, 7}}, PlotLabel -> 
+           Style["Gerak Parabola", Bold, 24]]], 2, 
+        Module[{$CellContext`sol3$, $CellContext`sol2$, $CellContext`sol1$, \
+$CellContext`tmax$}, $CellContext`sol1$ = 
+          NDSolveValue[{$CellContext`m$$ 
+              Derivative[
+               2][$CellContext`z][$CellContext`k] == (-$CellContext`m$$) 
+               9.81 - $CellContext`c$$ 
+              Derivative[1][$CellContext`z][$CellContext`k] Abs[
+                Derivative[
+                1][$CellContext`z][$CellContext`k]], $CellContext`z[
+              0] == $CellContext`z0$$, 
+             Derivative[1][$CellContext`z][0] == $CellContext`v0$$ 
+              Cos[$CellContext`j$$]}, $CellContext`z, {$CellContext`k, 0, 
+             1000}]; $CellContext`sol2$ = 
+          NDSolveValue[{$CellContext`m$$ 
+              Derivative[
+               2][$CellContext`y][$CellContext`k] == (-$CellContext`c$$) 
+              Derivative[1][$CellContext`y][$CellContext`k] Abs[
+                Derivative[
+                1][$CellContext`y][$CellContext`k]], $CellContext`y[0] == 0, 
+             Derivative[1][$CellContext`y][0] == $CellContext`v0$$ 
+              Sin[$CellContext`j$$] 
+              Sin[$CellContext`b$$]}, $CellContext`y, {$CellContext`k, 0, 
+             1000}]; $CellContext`sol3$ = 
+          NDSolveValue[{$CellContext`m$$ 
+              Derivative[
+               2][$CellContext`x][$CellContext`k] == (-$CellContext`c$$) 
+              Derivative[1][$CellContext`x][$CellContext`k] Abs[
+                Derivative[
+                1][$CellContext`x][$CellContext`k]], $CellContext`x[0] == 0, 
+             Derivative[1][$CellContext`x][0] == $CellContext`v0$$ 
+              Sin[$CellContext`j$$] 
+              Cos[$CellContext`b$$]}, $CellContext`x, {$CellContext`k, 0, 
+             1000}]; $CellContext`tmax$ = 
+          InverseFunction[$CellContext`sol1$][0]; Show[
+           ParametricPlot3D[{
+             $CellContext`sol3$[$CellContext`p], 
+             $CellContext`sol2$[$CellContext`p], 
+             $CellContext`sol1$[$CellContext`p]}, {$CellContext`p, 
+             0.00001, $CellContext`t$$}], 
+           Graphics3D[{
+             Style[
+              Sphere[{
+                $CellContext`sol3$[$CellContext`t$$], 
+                $CellContext`sol2$[$CellContext`t$$], 
+                $CellContext`sol1$[$CellContext`t$$]}, 1/8], Red], 
+             Text[
+              
+              Row[{"waktu yang dibutuhkan sampai tanah ", $CellContext`tmax$, 
+                " s"}], {0, 1, -2}], 
+             Text["digunakan percepatan gravitasi 9,81m/s^2", {0, 1, -3}]}], 
+           PlotRange -> {{0, 4}, {0, 4}, {0, 7}}, PlotLabel -> 
+           Style["Gerak Parabola", Bold, 24]]]], "Specifications" :> {
+        Style["Simulasi Gerak Parabola by Jessie", 20, Bold], Delimiter, 
+        Style[
+        "pengaruh gerak", 
+         Bold], {{$CellContext`motion$$, 0, "faktor gesekan udara"}, {
+         0 -> "tanpa gesekan", 1 -> "cv", 2 -> "cv^2"}, ControlType -> 
+         Setter}, {{$CellContext`m$$, 1, "massa benda (kg)"}, 1, 5, 
+         Appearance -> 
+         "Labeled"}, {{$CellContext`c$$, 1, "faktor gesekan udara (N.s/m)"}, 
+         1, 5, Appearance -> "Labeled"}, Delimiter, 
+        Style[
+        "kondisi awal", Bold], {{$CellContext`z0$$, 5, "Ketinggian awal (m)"},
+          0, 5, Appearance -> 
+         "Labeled"}, {{$CellContext`v0$$, 5, "Kecepatan awal (m/s)"}, 5, 10, 
+         Appearance -> 
+         "Labeled"}, {{$CellContext`j$$, Rational[1, 12] Pi, 
+          "Sudut lemparan terhadap sumbu z (rad)"}, Rational[1, 12] Pi, 
+         Rational[1, 2] Pi, Rational[1, 12] Pi, Appearance -> 
+         "Labeled"}, {{$CellContext`b$$, Rational[1, 12] Pi, 
+          "Sudut lemparan terhadap sumbu x (rad)"}, Rational[1, 12] Pi, 
+         Rational[1, 2] Pi, Rational[1, 12] Pi, Appearance -> "Labeled"}, 
+        Delimiter, {{$CellContext`t$$, 0, "Waktu(s)"}, 0, 5, ControlType -> 
+         Trigger, AnimationRate -> 1, Appearance -> {"Open", "Labeled"}}, 
+        Style["100% bikin sendiri", Bold]}, 
+      "Options" :> {
+       TrackedSymbols :> {$CellContext`motion$$, $CellContext`z0$$, \
+$CellContext`v0$$, $CellContext`j$$, $CellContext`b$$, $CellContext`t$$}}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{1045., {304., 311.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.7706235262734423`*^9, 3.7706236232609897`*^9, {3.770623696103156*^9, 
+   3.7706237228156834`*^9}, 3.7706237921236477`*^9, 3.7706238448186617`*^9, 
+   3.7706243777751455`*^9, 3.7706255055559425`*^9, {3.7706255488148184`*^9, 
+   3.7706255694536543`*^9}, {3.7706256507141957`*^9, 3.770625686859459*^9}, 
+   3.770625773985611*^9, {3.770625829240907*^9, 3.7706258567593555`*^9}, {
+   3.7706259330278883`*^9, 3.770625960234336*^9}, 3.7706260322284613`*^9, 
+   3.770626122802219*^9, 3.770626891748702*^9, 3.770627090548073*^9, 
+   3.770627141656996*^9, 3.770627223142657*^9, 3.7706273306438055`*^9, {
+   3.7706274012598443`*^9, 3.770627438374967*^9}, 3.7706277144627585`*^9, 
+   3.770627849342473*^9, {3.7706279153812504`*^9, 3.770627953379424*^9}, 
+   3.770628004049322*^9, 3.7706283183022966`*^9, {3.7706283807998705`*^9, 
+   3.7706284078544188`*^9}, {3.770628476386338*^9, 3.7706284900501194`*^9}, 
+   3.7706285355297213`*^9, 3.770628686939381*^9, 3.7706287368982387`*^9, {
+   3.7706290703383102`*^9, 3.7706290941326714`*^9}, 3.7706294967977023`*^9, 
+   3.770629555414055*^9}]
+}, Open  ]]
+},
+WindowSize->{1345, 686},
+WindowMargins->{{-8, Automatic}, {Automatic, 0}},
+Magnification->1.25,
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 25074, 572, 1214, "Input"],
+Cell[25657, 596, 13451, 253, 668, "Output"]
+}, Open  ]]
+}
+]
+*)
+
